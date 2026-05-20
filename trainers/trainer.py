@@ -736,11 +736,12 @@ class Trainer(object):
     def sample_qz(self, sample_size=1000, qzs=None):
         N = len(self.val_loader.dataset)
         if qzs is not None:
-            ks = np.random.random_integers(0, N-1, sample_size)
+            N = qzs.size(0)
+            ks = np.random.randint(0, N, sample_size)
             z = qzs[ks]
             return z
 
-        ks = np.random.random_integers(0, N-1, sample_size)
+        ks = np.random.randint(0, N, sample_size)
         imps = torch.cat(
           [self.val_loader.dataset[k].unsqueeze(0) for k in ks]
         )

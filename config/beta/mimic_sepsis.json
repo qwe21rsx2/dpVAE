@@ -1,0 +1,43 @@
+{
+  "type": "beta",
+  "cuda": true,
+  "seed": 1,
+
+  "model": "beta_linear",
+  "input_dims": 3,
+  "z_dims": 2,
+  "mse_weight": 1,
+  "prior": "multivariate_normal",
+  "beta": 5,
+  "gamma": 4,
+  "C_max": 25,
+  "C_stop_iter": 100000,
+
+  "objective": "H",
+  "max_iter": 100000,
+  "batch_size": 64,
+  "lr": 0.0001,
+  "beta1": 0.9,
+  "beta2": 0.999,
+
+  "dset_dir": "dataset/mimic_sepsis_cohort.csv",
+  "dataset": "csv",
+  "data_type": "linear",
+  "feature_cols": ["gender", "anchor_age", "duration_days"],
+  "categorical_cols": ["gender"],
+  "exclude_cols": ["subject_id", "hadm_id", "admittime", "dischtime", "event_time", "event"],
+  "normalize": true,
+  "val_ratio": 0.2,
+  "augment": false,
+  "image_size": 28,
+  "num_workers": 0,
+
+  "save_output": true,
+  "output_dir": "outputs/mimic_sepsis",
+
+  "gather_step": 1000,
+  "display_step": 10000,
+  "save_step": 10000,
+  "ckpt_dir": "checkpoints/mimic_sepsis",
+  "ckpt_name": "best"
+}
