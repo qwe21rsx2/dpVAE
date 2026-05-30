@@ -4,7 +4,7 @@ import sys
 from trainers.trainer import get_trainer
 
 
-DEFAULT_CONFIG = 'config/beta/mimic_sepsis.json'
+DEFAULT_CONFIG = 'config/beta/mimic_sepsis_event.json'
 
 
 def run_config(conf):

@@ -10,8 +10,8 @@ import torch
 from trainers.trainer import get_trainer
 
 
-DEFAULT_CONFIG = 'config/beta/mimic_sepsis.json'
-DEFAULT_OUTPUT = 'outputs/mimic_sepsis/generated_10000.csv'
+DEFAULT_CONFIG = 'config/beta/mimic_sepsis_event.json'
+DEFAULT_OUTPUT = 'outputs/mimic_sepsis_event_beta0001/generated_10000.csv'
 
 
 def load_table_metadata(config):
@@ -90,6 +90,10 @@ def decode_generated(samples, metadata):
                 cat_idx = int(np.rint(value))
                 cat_idx = min(max(cat_idx, 0), max(mapping.keys()))
                 row[col] = mapping[cat_idx]
+            elif col == 'anchor_age':
+                row[col] = int(np.clip(np.rint(value), 0, 120))
+            elif col == 'duration_days':
+                row[col] = float(max(value, 0))
             else:
                 row[col] = float(value)
         rows.append(row)
